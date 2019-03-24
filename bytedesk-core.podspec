@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "bytedesk-core"
-  s.version      = "1.5.0"
+  s.version      = "1.5.1"
   s.summary      = "bytedesk.com core lib."
 
   s.description  = <<-DESC
