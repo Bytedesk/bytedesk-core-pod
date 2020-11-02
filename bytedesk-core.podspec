@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "bytedesk-core"
-  s.version      = "2.1.1"
+  s.version      = "2.1.2"
   s.summary      = "bytedesk.com core lib."
 
   s.description  = <<-DESC
@@ -16,6 +16,8 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/pengjinning/bytedesk-core-pod.git", :tag => "#{s.version}" }
   s.vendored_frameworks = "frameworks/cocoapods/bytedesk-core.framework"
   s.requires_arc = true
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
   s.dependency "FMDB"
   s.dependency "MMKV"
