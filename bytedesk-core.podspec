@@ -20,7 +20,6 @@ Pod::Spec.new do |s|
   s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
   s.dependency "FMDB"
-  s.dependency "MMKV"
   s.dependency "Protobuf"
   s.dependency "MQTTClient"
   s.dependency "AFNetworking"
