@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
   s.dependency "FMDB"
   s.dependency "Protobuf"
   s.dependency "MQTTClient"
+  s.dependency "MQTTClient/Websocket"
   s.dependency "AFNetworking"
   s.dependency "CocoaLumberjack"
   s.swift_version = "4.0"
