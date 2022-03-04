@@ -413,6 +413,19 @@ typedef void (^FailedCallbackBlock)(NSError *error);
     resultSuccess:(SuccessCallbackBlock)success
      resultFailed:(FailedCallbackBlock)failed;
 
+
+/**
+ 设置描述
+
+ @param description 描述
+ @param success 成功回调
+ @param failed 失败回调
+ */
++ (void)setDescription:(NSString *)description
+      resultSuccess:(SuccessCallbackBlock)success
+       resultFailed:(FailedCallbackBlock)failed;
+
+
 /**
  获取用户信息
 
@@ -517,6 +530,16 @@ typedef void (^FailedCallbackBlock)(NSError *error);
  */
 + (void)userProfileResultSuccess:(SuccessCallbackBlock)success
                     resultFailed:(FailedCallbackBlock)failed;
+
+/**
+ 根据uid加载访客个人信息
+ */
++ (void)getUserProfileByUid:(NSString *)uid resultSuccess:(SuccessCallbackBlock)success resultFailed:(FailedCallbackBlock)failed;
+
+/**
+ 根据uid加载crm客户信息
+ */
++ (void)getCustomerByUid:(NSString *)uid resultSuccess:(SuccessCallbackBlock)success resultFailed:(FailedCallbackBlock)failed;
 
 /**
  当前在线的客服
@@ -1147,6 +1170,22 @@ typedef void (^FailedCallbackBlock)(NSError *error);
                    resultFailed:(FailedCallbackBlock)failed;
 
 /**
+ 加载待办任务列表
+ */
++ (void)queryTodos:(int)page
+              withSize:(int)size
+         resultSuccess:(SuccessCallbackBlock)success
+          resultFailed:(FailedCallbackBlock)failed;
+
+/**
+ 加载我的工单
+ */
++ (void)queryTickets:(int)page
+              withSize:(int)size
+         resultSuccess:(SuccessCallbackBlock)success
+          resultFailed:(FailedCallbackBlock)failed;
+
+/**
  <#Description#>
 
  @return <#return value description#>
@@ -1326,127 +1365,111 @@ typedef void (^FailedCallbackBlock)(NSError *error);
                 resultSuccess:(SuccessCallbackBlock)success
                  resultFailed:(FailedCallbackBlock)failed;
 
-/**
- 同步发送文本消息
- 
- @param content content description
- @param tId 会话tid
- @param sessiontype <#stype description#>
- */
-+ (void)sendTextMessage:(NSString *)content
-                  toTid:(NSString *)tId
-                localId:(NSString *)localId
-            sessionType:(NSString *)sessiontype
-          resultSuccess:(SuccessCallbackBlock)success
-           resultFailed:(FailedCallbackBlock)failed;
-
-/**
- 同步发送图片消息
- 
- @param content <#content description#>
- @param tId 会话tid
- @param sessiontype <#stype description#>
- */
-+ (void)sendImageMessage:(NSString *)content
-                   toTid:(NSString *)tId
-                 localId:(NSString *)localId
-             sessionType:(NSString *)sessiontype
-           resultSuccess:(SuccessCallbackBlock)success
-            resultFailed:(FailedCallbackBlock)failed;
-
-/**
- 发送文件消息
-
- @param content <#content description#>
- @param tId 会话tid
- @param localId <#localId description#>
- @param sessiontype <#sessiontype description#>
- @param success 成功回调
- @param failed 失败回调
- */
-+ (void)sendFileMessage:(NSString *)content
-                  toTid:(NSString *)tId
-                localId:(NSString *)localId
-            sessionType:(NSString *)sessiontype
-                 format:(NSString *)format
-               fileName:(NSString *)fileName
-               fileSize:(NSString *)fileSize
-          resultSuccess:(SuccessCallbackBlock)success
-           resultFailed:(FailedCallbackBlock)failed;
-
-/**
- 同步发送语音消息
- 
- @param content <#content description#>
- @param tId 会话tid
- @param sessiontype <#stype description#>
- */
-+ (void)sendVoiceMessage:(NSString *)content
-                   toTid:(NSString *)tId
-                 localId:(NSString *)localId
-             sessionType:(NSString *)sessiontype
-             voiceLength:(int)voiceLength
-                  format:(NSString *)format
-           resultSuccess:(SuccessCallbackBlock)success
-            resultFailed:(FailedCallbackBlock)failed;
-
-/**
- 发送商品消息
-
- @param content <#content description#>
- @param tId 会话tid
- @param localId <#localId description#>
- @param sessiontype <#sessiontype description#>
- @param success 成功回调
- @param failed 失败回调
- */
-+ (void)sendCommodityMessage:(NSString *)content
-                       toTid:(NSString *)tId
-                     localId:(NSString *)localId
-                 sessionType:(NSString *)sessiontype
-               resultSuccess:(SuccessCallbackBlock)success
-                resultFailed:(FailedCallbackBlock)failed;
-
-
-/**
- 发送红包消息
-
- @param content <#content description#>
- @param tId 会话tid
- @param localId <#localId description#>
- @param sessiontype <#sessiontype description#>
- @param success 成功回调
- @param failed 失败回调
- */
-+ (void)sendRedPacketMessage:(NSString *)content
-                       toTid:(NSString *)tId
-                     localId:(NSString *)localId
-                 sessionType:(NSString *)sessiontype
-               resultSuccess:(SuccessCallbackBlock)success
-                resultFailed:(FailedCallbackBlock)failed;
+///**
+// 同步发送文本消息
+// 
+// @param content content description
+// @param tId 会话tid
+// @param sessiontype <#stype description#>
+// */
+//+ (void)sendTextMessage:(NSString *)content
+//                  toTid:(NSString *)tId
+//                localId:(NSString *)localId
+//            sessionType:(NSString *)sessiontype
+//          resultSuccess:(SuccessCallbackBlock)success
+//           resultFailed:(FailedCallbackBlock)failed;
+//
+///**
+// 同步发送图片消息
+// 
+// @param content <#content description#>
+// @param tId 会话tid
+// @param sessiontype <#stype description#>
+// */
+//+ (void)sendImageMessage:(NSString *)content
+//                   toTid:(NSString *)tId
+//                 localId:(NSString *)localId
+//             sessionType:(NSString *)sessiontype
+//           resultSuccess:(SuccessCallbackBlock)success
+//            resultFailed:(FailedCallbackBlock)failed;
+//
+///**
+// 发送文件消息
+//
+// @param content <#content description#>
+// @param tId 会话tid
+// @param localId <#localId description#>
+// @param sessiontype <#sessiontype description#>
+// @param success 成功回调
+// @param failed 失败回调
+// */
+//+ (void)sendFileMessage:(NSString *)content
+//                  toTid:(NSString *)tId
+//                localId:(NSString *)localId
+//            sessionType:(NSString *)sessiontype
+//                 format:(NSString *)format
+//               fileName:(NSString *)fileName
+//               fileSize:(NSString *)fileSize
+//          resultSuccess:(SuccessCallbackBlock)success
+//           resultFailed:(FailedCallbackBlock)failed;
+//
+///**
+// 同步发送语音消息
+// 
+// @param content <#content description#>
+// @param tId 会话tid
+// @param sessiontype <#stype description#>
+// */
+//+ (void)sendVoiceMessage:(NSString *)content
+//                   toTid:(NSString *)tId
+//                 localId:(NSString *)localId
+//             sessionType:(NSString *)sessiontype
+//             voiceLength:(int)voiceLength
+//                  format:(NSString *)format
+//           resultSuccess:(SuccessCallbackBlock)success
+//            resultFailed:(FailedCallbackBlock)failed;
+//
+///**
+// 发送商品消息
+//
+// @param content <#content description#>
+// @param tId 会话tid
+// @param localId <#localId description#>
+// @param sessiontype <#sessiontype description#>
+// @param success 成功回调
+// @param failed 失败回调
+// */
+//+ (void)sendCommodityMessage:(NSString *)content
+//                       toTid:(NSString *)tId
+//                     localId:(NSString *)localId
+//                 sessionType:(NSString *)sessiontype
+//               resultSuccess:(SuccessCallbackBlock)success
+//                resultFailed:(FailedCallbackBlock)failed;
+//
+//
+///**
+// 发送红包消息
+//
+// @param content <#content description#>
+// @param tId 会话tid
+// @param localId <#localId description#>
+// @param sessiontype <#sessiontype description#>
+// @param success 成功回调
+// @param failed 失败回调
+// */
+//+ (void)sendRedPacketMessage:(NSString *)content
+//                       toTid:(NSString *)tId
+//                     localId:(NSString *)localId
+//                 sessionType:(NSString *)sessiontype
+//               resultSuccess:(SuccessCallbackBlock)success
+//                resultFailed:(FailedCallbackBlock)failed;
 
 /**
  同步发送消息
- 
- @param content <#content description#>
- @param type <#type description#>
- @param tId 会话tid
- @param sessiontype <#stype description#>
  */
-+ (void)sendMessage:(NSString *)content
-               type:(NSString *)type
-              toTid:(NSString *)tId
-            localId:(NSString *)localId
-        sessionType:(NSString *)sessiontype
-        voiceLength:(int)voiceLength
-             format:(NSString *)format
-           fileName:(NSString *)fileName
-           fileSize:(NSString *)fileSize
-destroyAfterReading:(BOOL)destroyAfterReading
- destroyAfterLength:(int)destroyAfterLength
++ (void)sendMessage:(NSString *)json
       resultSuccess:(SuccessCallbackBlock)success
        resultFailed:(FailedCallbackBlock)failed;
-
 
 /**
  访客端调用，查询当前访客自己的所有聊天记录
