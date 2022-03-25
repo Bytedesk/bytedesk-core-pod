@@ -473,6 +473,27 @@ typedef void (^FailedCallbackBlock)(NSError *error);
           resultFailed:(FailedCallbackBlock)failed;
 
 /**
+ 查询当前用户-某技能组wid或指定客服未读消息数目
+ 注意：技能组wid或指定客服唯一id
+ 适用于 访客 和 客服
+ */
++ (void)getUreadCount:(NSString *)wid
+        resultSuccess:(SuccessCallbackBlock)success
+         resultFailed:(FailedCallbackBlock)failed;
+
+/**
+ 访客端-查询访客所有未读消息数目
+ */
++ (void)getUreadCountVisitorWithResultSuccess:(SuccessCallbackBlock)success
+                                 resultFailed:(FailedCallbackBlock)failed;
+
+/**
+ 客服端-查询客服所有未读消息数目
+ */
++ (void)getUreadCountAgentWithResultSuccess:(SuccessCallbackBlock)success
+                               resultFailed:(FailedCallbackBlock)failed;
+
+/**
  获取用户的所有会话历史
 
  @param success 成功回调
@@ -584,6 +605,7 @@ typedef void (^FailedCallbackBlock)(NSError *error);
  */
 + (void)updateAutoReply:(BOOL)isAutoReply
             withContent:(NSString *)content
+           withImageUrl:(NSString *)imageUrl
           resultSuccess:(SuccessCallbackBlock)success
            resultFailed:(FailedCallbackBlock)failed;
 
@@ -1121,7 +1143,8 @@ typedef void (^FailedCallbackBlock)(NSError *error);
  */
 + (void)addBlock:(NSString *)uid
         withNote:(NSString *)note
-//         withWid:(NSString *)wid
+        withType:(NSString *)type
+        withUuid:(NSString *)uuid
    resultSuccess:(SuccessCallbackBlock)success
     resultFailed:(FailedCallbackBlock)failed;
 

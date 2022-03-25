@@ -418,6 +418,27 @@ typedef void (^FailedCallbackBlock)(NSError *error);
                  resultFailed:(FailedCallbackBlock)failed;
 
 /**
+ 查询当前用户-某技能组wid或指定客服未读消息数目
+ 注意：技能组wid或指定客服唯一id
+ 适用于 访客 和 客服
+ */
+- (void)getUreadCount:(NSString *)wid
+        resultSuccess:(SuccessCallbackBlock)success
+         resultFailed:(FailedCallbackBlock)failed;
+
+/**
+ 访客端-查询访客所有未读消息数目
+ */
+- (void)getUreadCountVisitorWithResultSuccess:(SuccessCallbackBlock)success
+                                 resultFailed:(FailedCallbackBlock)failed;
+
+/**
+ 客服端-查询客服所有未读消息数目
+ */
+- (void)getUreadCountAgentWithResultSuccess:(SuccessCallbackBlock)success
+                               resultFailed:(FailedCallbackBlock)failed;
+
+/**
  <#Description#>
 
  @param page <#page description#>
@@ -552,7 +573,8 @@ typedef void (^FailedCallbackBlock)(NSError *error);
  @param failed 失败回调函数
  */
 - (void)updateAutoReply:(BOOL)isAutoReply
-                 withContent:(NSString *)content
+            withContent:(NSString *)content
+           withImageUrl:(NSString *)imageUrl
                resultSuccess:(SuccessCallbackBlock)success
                 resultFailed:(FailedCallbackBlock)failed;
 
@@ -1248,6 +1270,8 @@ typedef void (^FailedCallbackBlock)(NSError *error);
  */
 - (void)addBlock:(NSString *)uid
         withNote:(NSString *)note
+        withType:(NSString *)type
+        withUuid:(NSString *)uuid
    resultSuccess:(SuccessCallbackBlock)success
     resultFailed:(FailedCallbackBlock)failed;
 
@@ -1404,11 +1428,6 @@ typedef void (^FailedCallbackBlock)(NSError *error);
 /**
  同步发送消息
  TODO: 加频率限制，每秒1条
- 
- @param content <#content description#>
- @param type <#type description#>
- @param tId <#tId description#>
- @param sessiontype <#stype description#>
  */
 - (void)sendMessage:(NSString *)json
       resultSuccess:(SuccessCallbackBlock)success

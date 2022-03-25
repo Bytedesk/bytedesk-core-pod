@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "bytedesk-core"
-  s.version      = "2.5.6"
+  s.version      = "2.5.7"
   s.summary      = "bytedesk.com core lib."
 
   s.description  = <<-DESC
@@ -21,10 +21,6 @@ Pod::Spec.new do |s|
 
   s.dependency "FMDB"
   s.dependency "Protobuf"
-  s.dependency "MQTTClient"
-  s.dependency "MQTTClient/Websocket"
-  s.dependency "SJVideoPlayer"
-  s.dependency "AFNetworking"
   s.dependency "CocoaLumberjack"
   s.swift_version = "4.0"
 
